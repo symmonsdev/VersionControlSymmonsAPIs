@@ -1,0 +1,434 @@
+2020-09-03 11:24:08 - EXCEPTION 1 / 166: Address_Book__ByRowFilter - The metadata could not be determined because statement 'EXEC (@sqlQry)' in procedure 'Address_Book__ByRowFilter'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 2 / 166: Closed_Orders__ByDateRange - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+		SELECT * 
+		FROM [F42119_CurrentFiscal__Detail]
+		WHERE [SDUPRC] <>' in procedure 'Closed_Orders__ByDateRange' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 3 / 166: Closed_Orders__ByRowFilter - The metadata could not be determined because statement 'INSERT INTO #ClosedRecordsByRowFilter
+	EXEC(@sqlQry)' in procedure 'Closed_Orders__ByRowFilter' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 4 / 166: Closed_Orders__ByRowFilter_Ferguson - The metadata could not be determined because statement 'EXEC(@sqlQry)' in procedure 'Closed_Orders__ByRowFilter_Ferguson'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 5 / 166: Closed_Orders__BySalesRep - The metadata could not be determined because statement 'INSERT INTO #ClosedRecordsByRep
+			SELECT DISTINCT [SCDOCO], [SCDCTO], [SCLNID] 
+			FROM F42005_Cu' in procedure 'Closed_Orders__BySalesRep' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 6 / 166: Closed_Orders__ByShipTo - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT 	F42119__Detail.*, 
+			 CAST(f.SDLPRC AS DECIMAL) / CAST(10000' in procedure 'Closed_Orders__ByShipTo' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 7 / 166: Closed_Orders__ByShipTo_ByPO_ByBranch - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT 	F42119__Detail.*, 
+			 CAST(f.SDLPRC AS DECIMAL) / CAST(10000' in procedure 'Closed_Orders__ByShipTo_ByPO_ByBranch' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 8 / 166: Closed_Orders__ByShipTo_ByPO_Private - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT 	F42119__Detail.*, 
+			 CAST(f.SDLPRC AS DECIMAL) / CAST(10000' in procedure 'Closed_Orders__ByShipTo_ByPO_Private' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 9 / 166: Closed_Orders__ByShipTo-SalesRep - Incorrect syntax near 'SalesRep'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 10 / 166: Closed_Orders__BySoldTo - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT 	F42119__Detail.*, 
+			CAST(f.SDLPRC AS DECIMAL) / CAST(10000 A' in procedure 'Closed_Orders__BySoldTo' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 11 / 166: Closed_Orders__BySoldTo-SalesRep - Incorrect syntax near 'SalesRep'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 12 / 166: Closed_Orders__ProductFamRevenue - The metadata could not be determined because statement 'INSERT INTO #ProductFamRevenue
+			SELECT
+				[Code], [Description], SUM([Revenue]) AS [TotalRevenu' in procedure 'Closed_Orders__ProductFamRevenue' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 13 / 166: Closed_Orders__ProductFamRevenue_Ferguson - The metadata could not be determined because statement 'EXEC (@strSqlRep_C)' in procedure 'Closed_Orders__ProductFamRevenue_Ferguson'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 14 / 166: Closed_Orders__ReplacementPartRevenue - The metadata could not be determined because statement 'INSERT INTO #ReplacementPartsOrders
+		SELECT DISTINCT [SDDOCO], [SDDCTO], [SDLNID]
+		FROM F42119_C' in procedure 'Closed_Orders__ReplacementPartRevenue' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 15 / 166: Closed_Orders__SalesCatRevenue - The metadata could not be determined because statement 'INSERT INTO #SalesCatRevenue
+		SELECT
+			[Code], 
+			[Description], 
+			SUM([CurrRevenue]) AS [C' in procedure 'Closed_Orders__SalesCatRevenue' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 16 / 166: Closed_Orders__SalesCatRevenue_Ferguson - The metadata could not be determined because statement 'INSERT INTO #ClosedRevenueRecords
+	SELECT
+		s.FEFEUN AS SDDOCO,s.FEFETL AS SDDCTO, 0 AS SDLNID,''' in procedure 'Closed_Orders__SalesCatRevenue_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 17 / 166: Closed_Orders__SalesCatRevenueDetail - The metadata could not be determined because statement 'INSERT INTO #SalesCat2Revenue
+		SELECT
+			[Code],
+			[Code2], 
+			[Description] + ' / ' + [Descr' in procedure 'Closed_Orders__SalesCatRevenueDetail' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 18 / 166: Closed_Orders__SalesCatRevenueDetail_Ferguson - The metadata could not be determined because statement 'INSERT INTO #ClosedRevenueRecords
+	SELECT
+		s.FEFEUN AS SDDOCO,s.FEFETL AS SDDCTO, 0 AS SDLNID,''' in procedure 'Closed_Orders__SalesCatRevenueDetail_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 19 / 166: Closed_Orders_ByInvoiceNum - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT fd.*, f.SDRSDJ_GR, CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DEC' in procedure 'Closed_Orders_ByInvoiceNum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 20 / 166: Closed_Orders_ByItemNum - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT	fd.*,
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL) as SD' in procedure 'Closed_Orders_ByItemNum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 21 / 166: Closed_Orders_ByPONum - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT	fd.*, 
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL) as S' in procedure 'Closed_Orders_ByPONum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 22 / 166: Closed_Orders_ByPONumOrg - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT	*
+	FROM		F42119__Detail
+	WHERE	([SDVR01] = @poNum)' in procedure 'Closed_Orders_ByPONumOrg' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 23 / 166: Closed_Orders_ByQuoteNum - The metadata could not be determined because statement 'INSERT INTO #ClosedRecords
+	SELECT	fd.*, 
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL) as S' in procedure 'Closed_Orders_ByQuoteNum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 24 / 166: Closed_Orders_Top100Customers - The metadata could not be determined because statement 'INSERT INTO #Top100CustOrders
+		SELECT
+			F42119_CurrentFiscal__Detail.[SDDOCO], F42119_CurrentFis' in procedure 'Closed_Orders_Top100Customers' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 25 / 166: Closed_Orders_Top50 - The metadata could not be determined because statement 'INSERT INTO #Top50ClosedOrders
+		SELECT DISTINCT [SDDOCO], [SDDCTO], [SDLNID]
+		FROM F42119_Curren' in procedure 'Closed_Orders_Top50' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 26 / 166: Closed_Orders_TopSignature - The metadata could not be determined because statement 'INSERT INTO #SigOrders
+		SELECT DISTINCT s.[SDDOCO], [SDDCTO], [SDLNID], s.[SDADDJ_GR]
+		--FROM F4' in procedure 'Closed_Orders_TopSignature' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 27 / 166: Closed_Ship_MultiTrack_ByInvoiceNum - The metadata could not be determined because statement 'INSERT INTO #TrackingByInvoiceNum
+	SELECT DISTINCT [FDDOCO], [FRTCO], [FD55TRN]
+	FROM  F554205
+	W' in procedure 'Closed_Ship_MultiTrack_ByInvoiceNum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 28 / 166: Closed_Ship_MultiTrack_ByPONum - The metadata could not be determined because statement 'INSERT INTO #TrackingByPO
+	SELECT DISTINCT [FDDOCO], [FRTCO], [FD55TRN]
+	FROM  F554205
+	WHERE F55' in procedure 'Closed_Ship_MultiTrack_ByPONum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 29 / 166: Closed_Ship_MultiTrack_ByQuoteNum - The metadata could not be determined because statement 'INSERT INTO #TrackingByPO
+	SELECT DISTINCT [FDDOCO], [FRTCO], [FD55TRN]
+	FROM  F554205 
+	JOIN F57' in procedure 'Closed_Ship_MultiTrack_ByQuoteNum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 30 / 166: Closed_Totals__BySalesRep_ByDateRange - The metadata could not be determined because statement 'INSERT INTO #ClosedRecordsByRep
+			SELECT
+				F42119_CurrentFiscal__Detail.[SDDOCO], F42119_Curren' in procedure 'Closed_Totals__BySalesRep_ByDateRange' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 31 / 166: Closed_Totals__BySalesRep_ByDateRange_Ferguson - The metadata could not be determined because statement 'EXEC (@strSqlRep_C)' in procedure 'Closed_Totals__BySalesRep_ByDateRange_Ferguson'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 32 / 166: Closed_Totals__BySalesRep_ByFiscal - The metadata could not be determined because the statement 'SELECT SUM([OrderCount]) AS [OrderCount], SUM([TotalRevenue]) AS [TotalRevenue], (SUM([TotalRevenue]' in procedure 'Closed_Totals__BySalesRep_ByFiscal' is not compatible with the statement 'SELECT 0 AS [OrderCount], NULL AS [TotalRevenue], NULL AS [AvgOrderSize]' in procedure 'Closed_Totals__BySalesRep_ByFiscal'.
+2020-09-03 11:24:08 - EXCEPTION 33 / 166: Closed_Totals__BySalesRep_ByFiscal_Ferguson - The metadata could not be determined because statement 'EXEC (@strSqlRep_C)' in procedure 'Closed_Totals__BySalesRep_ByFiscal_Ferguson'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 34 / 166: Closed_Totals__ByTaxID_ByDateRange - The metadata could not be determined because statement 'INSERT INTO #RepIDs
+	SELECT [ABAN8]
+	FROM F0101
+	WHERE 
+		[ABTAX] = @taxID AND
+		(
+			(ISNULL(' in procedure 'Closed_Totals__ByTaxID_ByDateRange' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 35 / 166: Closed_Totals__ByTaxID_ByDateRange_Ferguson - The metadata could not be determined because statement 'INSERT INTO #RepIDs
+	SELECT [ABAN8]
+	FROM F0101
+	WHERE 
+		[ABTAX] = @taxID AND
+		(
+			(ISNULL(' in procedure 'Closed_Totals__ByTaxID_ByDateRange_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 36 / 166: Closed_Totals__ByTaxID_ByFiscal - The metadata could not be determined because statement 'INSERT INTO #RepIDs
+	SELECT [ABAN8]
+	FROM F0101
+	WHERE 
+		[ABTAX] = @taxID AND
+		(
+			(ISNULL(' in procedure 'Closed_Totals__ByTaxID_ByFiscal' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 37 / 166: Closed_Totals__ByTaxID_ByFiscal_Ferguson - The metadata could not be determined because statement 'INSERT INTO #RepIDs
+	SELECT [ABAN8]
+	FROM F0101
+	WHERE 
+		[ABTAX] = @taxID AND
+		(
+			(ISNULL(' in procedure 'Closed_Totals__ByTaxID_ByFiscal_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 38 / 166: Closed_Totals__RegionRevenue - The metadata could not be determined because statement 'INSERT INTO #RegionRevenue_Current
+		SELECT [ABAC01], SUM([OrderCount]), SUM([TotalRevenue]), CASE' in procedure 'Closed_Totals__RegionRevenue' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 39 / 166: Closed_Totals__RegionRevenue_Ferguson - The metadata could not be determined because statement 'EXEC (@strSqlRep_C)' in procedure 'Closed_Totals__RegionRevenue_Ferguson'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 40 / 166: Closed_Totals__RepRevenue - The metadata could not be determined because statement 'EXEC (@strSql)' in procedure 'Closed_Totals__RepRevenue'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 41 / 166: Closed_Totals__RepRevenue_ComboReps - The metadata could not be determined because statement 'EXEC (@strSql)' in procedure 'Closed_Totals__RepRevenue_ComboReps'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 42 / 166: Closed_Totals__RepRevenue_Combos - The metadata could not be determined because statement 'INSERT INTO #RevCurrent
+		SELECT 
+			RepRevenue_CurrentFiscal.[ABAC01], RepRevenue_CurrentFiscal.[' in procedure 'Closed_Totals__RepRevenue_Combos' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 43 / 166: Closed_Totals__RepRevenue_Combos_Ferguson - The metadata could not be determined because statement 'EXEC (@strSqlRep_C)' in procedure 'Closed_Totals__RepRevenue_Combos_Ferguson'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 44 / 166: Closed_Totals__RepRevenue_Ferguson - The metadata could not be determined because statement 'EXEC (@strSqlRep_C)' in procedure 'Closed_Totals__RepRevenue_Ferguson'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 45 / 166: Closed_Totals__RepRevenue_NoCombos - The metadata could not be determined because statement 'EXEC (@strSql)' in procedure 'Closed_Totals__RepRevenue_NoCombos'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 46 / 166: Closed_Totals__RepRevenue_NoCombos_Ferguson - The metadata could not be determined because statement 'EXEC (@strSqlRep_C)' in procedure 'Closed_Totals__RepRevenue_NoCombos_Ferguson'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 47 / 166: Closed_Totals__ShipTo_By-SalesRep-SoldTo - Incorrect syntax near 'SalesRep'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 48 / 166: Closed_Totals__Signature - The metadata could not be determined because statement 'INSERT INTO #SigOrders
+		SELECT DISTINCT SDDOCO, SDDCTO, SDLNID, CASE WHEN (LTRIM(RTRIM(IMSRP7)) =' in procedure 'Closed_Totals__Signature' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 49 / 166: Closed_Totals__SoldTo_By-SalesRep - Incorrect syntax near 'SalesRep'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 50 / 166: Closed_Totals_ByTaxID_RepRevenue_Combo_Reps - The metadata could not be determined because statement 'INSERT INTO #RevCurrent
+		SELECT 
+			RepRevenue_CurrentFiscal.SDSLSM,  RepRevenue_CurrentFiscal.[A' in procedure 'Closed_Totals_ByTaxID_RepRevenue_Combo_Reps' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 51 / 166: CompareTables - The metadata could not be determined because statement 'exec ( @SQL)' in procedure 'CompareTables'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 52 / 166: Elements_ComOrders_BySalesRep-DateRange - Incorrect syntax near 'DateRange'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 53 / 166: Elements_DesOrders_BySalesRep-DateRange - Incorrect syntax near 'DateRange'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 54 / 166: Elements_PredsOrders_BySalesRep-DateRange - Incorrect syntax near 'DateRange'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 55 / 166: Elements_ProjOrders_BySalesRep-DateRange - Incorrect syntax near 'DateRange'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 56 / 166: Elements_ProjOrders_BySalesRep-DateRange_Ferguson - Incorrect syntax near 'DateRange_Ferguson'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 57 / 166: Elements_ShoOrders_BySalesRep-DateRange - Incorrect syntax near 'DateRange'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 58 / 166: Elements_ShoOrders_BySalesRep-DateRange_Ferguson - Incorrect syntax near 'DateRange_Ferguson'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 59 / 166: Elements_ShoTotals_ByEleFamily_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_BySho_Ferguson' in procedure 'Elements_ShoTotals_ByEleFamily_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 60 / 166: Elements_ShoTotals_ByMonth_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_BySho_Ferguson' in procedure 'Elements_ShoTotals_ByMonth_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 61 / 166: Elements_ShoTotals_ByRegion_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_BySho_Ferguson' in procedure 'Elements_ShoTotals_ByRegion_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 62 / 166: Elements_ShoTotals_BySalesRep_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_BySho_Ferguson' in procedure 'Elements_ShoTotals_BySalesRep_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 63 / 166: Elements_ShoTotals_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_BySho_Ferguson' in procedure 'Elements_ShoTotals_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 64 / 166: Elements_StrategicOrders_BySalesRep-DateRange - Incorrect syntax near 'DateRange'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 65 / 166: Elements_StrategicOrders_BySalesRep-DateRange_Ferguson - Incorrect syntax near 'DateRange_Ferguson'.
+The batch could not be analyzed because of compile errors.
+2020-09-03 11:24:08 - EXCEPTION 66 / 166: Elements_StrategicTotals_ByEleFamily_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByStrategic_Ferguson' in procedure 'Elements_StrategicTotals_ByEleFamily_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 67 / 166: Elements_StrategicTotals_ByMonth_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByStrategic_Ferguson' in procedure 'Elements_StrategicTotals_ByMonth_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 68 / 166: Elements_StrategicTotals_ByRegion_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByStrategic_Ferguson' in procedure 'Elements_StrategicTotals_ByRegion_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 69 / 166: Elements_StrategicTotals_BySalesRep_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByStrategic_Ferguson' in procedure 'Elements_StrategicTotals_BySalesRep_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 70 / 166: Elements_StrategicTotals_Ferguson - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByStrategic_Ferguson' in procedure 'Elements_StrategicTotals_Ferguson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 71 / 166: Fill_ElementsComTotals_ByMonth - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByCom' in procedure 'Fill_ElementsComTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 72 / 166: Fill_ElementsComTotals_ByMonth__CurrentFiscal - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByCom' in procedure 'Fill_ElementsComTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 73 / 166: Fill_ElementsDesTotals_ByMonth - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByDes' in procedure 'Fill_ElementsDesTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 74 / 166: Fill_ElementsDesTotals_ByMonth__CurrentFiscal - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByDes' in procedure 'Fill_ElementsDesTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 75 / 166: Fill_ElementsPredsTotals_ByMonth - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByPreds' in procedure 'Fill_ElementsPredsTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 76 / 166: Fill_ElementsPredsTotals_ByMonth__CurrentFiscal - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByPreds' in procedure 'Fill_ElementsPredsTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 77 / 166: Fill_ElementsProjTotals_ByMonth - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByProj' in procedure 'Fill_ElementsProjTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 78 / 166: Fill_ElementsProjTotals_ByMonth__CurrentFiscal - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByProj' in procedure 'Fill_ElementsProjTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 79 / 166: Fill_ElementsShoTotals_ByMonth - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_BySho' in procedure 'Fill_ElementsShoTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 80 / 166: Fill_ElementsShoTotals_ByMonth__CurrentFiscal - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_BySho' in procedure 'Fill_ElementsShoTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 81 / 166: Fill_ElementsStrategicTotals_ByMonth - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByStrategic' in procedure 'Fill_ElementsStrategicTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 82 / 166: Fill_ElementsStrategicTotals_ByMonth__CurrentFiscal - The metadata could not be determined because statement 'DELETE FROM #ElementsOrders_ByStrategic' in procedure 'Fill_ElementsStrategicTotals_ByMonth' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 83 / 166: Fill_ProductFamRepRevenue__Totals - The metadata could not be determined because statement 'INSERT INTO #ClosedRevenueRecords
+	SELECT
+		s.[SDDOCO], s.[SDDCTO], s.[SDLNID], [SDMCU], [SDAN8],' in procedure 'Fill_ProductFamRepRevenue__Totals' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 84 / 166: Fill_RegionRevenueTotals_ByMonth__CurrentFiscal - The metadata could not be determined because statement 'DELETE FROM #ClosedRevenueRecords' in procedure 'Fill_RegionRevenueTotals_ByMonth__CurrentFiscal' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 85 / 166: Fill_RegionRevenueTotals_ByMonth__LastFiscal - The metadata could not be determined because statement 'DELETE FROM #ClosedRevenueRecords' in procedure 'Fill_RegionRevenueTotals_ByMonth__LastFiscal' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 86 / 166: Fill_RepRevenue__Totals - The metadata could not be determined because statement 'INSERT INTO #ClosedRevenueRecords
+	SELECT
+
+		F42119_CurrentFiscal__Detail.[SDDOCO], F42119_Curren' in procedure 'Fill_RepRevenue__Totals' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 87 / 166: Fill_SalesCatRepRevenue__Totals - The metadata could not be determined because statement 'INSERT INTO #ClosedRevenueRecords
+	SELECT
+		s.[SDDOCO], s.[SDDCTO], s.[SDLNID], [SDMCU], [SDAN8],' in procedure 'Fill_SalesCatRepRevenue__Totals' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 88 / 166: Get_Commissions_ByRep_AgentType - The metadata could not be determined because statement 'INSERT INTO #ClosedRevenueRecords_FY -- Current Fiscal Year
+	SELECT
+
+		F42119_CurrentFiscal__Deta' in procedure 'Get_Commissions_ByRep_AgentType' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 89 / 166: Get_Commissions_ByRep_AgentType_old - The metadata could not be determined because statement 'INSERT INTO #CommYTD
+				SELECT         'salesrep=' + CONVERT(varchar(20), [F42160-9__Detail].SDSLS' in procedure 'Get_Commissions_ByRep_AgentType_old' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 90 / 166: Get_Commissions_ByUser - The metadata could not be determined because statement 'INSERT INTO #ClosedRevenueRecords_FY -- Current Fiscal Year
+	SELECT
+
+		F42119_CurrentFiscal__Deta' in procedure 'Get_Commissions_ByUser' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 91 / 166: Get_Commissions_ByUser_old - The metadata could not be determined because statement 'INSERT INTO #CommYTD
+				SELECT        'salesrep=' + CONVERT(varchar(20), [F42160-9__Detail].SDSLSM' in procedure 'Get_Commissions_ByUser_old' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 92 / 166: Get_Parts_Price - The metadata could not be determined because the statement 'SELECT     F57PRICP.LITM, (Convert(numeric(28,15),F57PRICP.UNCS) / 10000) as Actual_Price, F57PRICP.' in procedure 'Get_Parts_Price' is not compatible with the statement 'SELECT     F4101.IMSRP1, F57PRIC6.AC04, F4106.BPEFTJ, F4106.BPEXDJ, F57PRIC6.UPRC, F4106.BPUPRC, ((C' in procedure 'Get_Parts_Price'.
+2020-09-03 11:24:08 - EXCEPTION 93 / 166: Get_SalesCatCommissions_ByRep_AgentType - Cannot find the object "#CommYTD" because it does not exist or you do not have permissions.
+The metadata could not be determined because every code path results in an error; see previous errors for some of these.
+2020-09-03 11:24:08 - EXCEPTION 94 / 166: Get_SalesCatCommissions_ByRep_AgentType_old - Cannot find the object "#CommYTD" because it does not exist or you do not have permissions.
+The metadata could not be determined because every code path results in an error; see previous errors for some of these.
+2020-09-03 11:24:08 - EXCEPTION 95 / 166: Get_WholeGoods_Price - The metadata could not be determined because statement 'INSERT INTO #PriceInfo
+		SELECT * from F57PRIC6 where AN8 = @customerID' in procedure 'Get_WholeGoods_Price' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 96 / 166: Get_WholeGoods_Price_CP - The metadata could not be determined because statement 'INSERT INTO #PriceInfo
+		SELECT * from F57PRIC6 where AN8 = @customerID' in procedure 'Get_WholeGoods_Price_CP' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 97 / 166: GetOrderStatus - The metadata could not be determined because statement 'INSERT INTO #Statuses
+			SELECT [SHHOLD], [SHSTOP], [SHZON]
+			FROM F4201 INNER JOIN F42119__Detai' in procedure 'GetOrderStatus' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 98 / 166: GetOrderStatus_Quote - The metadata could not be determined because statement 'INSERT INTO #Statuses
+			SELECT [SHHOLD], [SHSTOP], [SHZON]
+			FROM F4201 INNER JOIN F42119__Detai' in procedure 'GetOrderStatus_Quote' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 99 / 166: GetPONum_ByWildcard - The metadata could not be determined because statement 'INSERT INTO #POSearchResults
+		SELECT DISTINCT [SDVR01], [F42160-9__Detail].[Salesman_ABAC01], [F42' in procedure 'GetPONum_ByWildcard' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 100 / 166: GetQuoteNum_ByWildcard - The metadata could not be determined because statement 'INSERT INTO #QuoteSearchResults
+		SELECT DISTINCT q.[QTQNBR], [F42160-9__Detail].[Salesman_ABAC01],' in procedure 'GetQuoteNum_ByWildcard' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 101 / 166: GetSalesReps_ByPONum - The metadata could not be determined because statement 'INSERT INTO #OpenRepsByPO
+		SELECT [SDDOCO], [SDDCTO], [SDLNID], [SDVR01]
+		FROM F4211__Detail' in procedure 'GetSalesReps_ByPONum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 102 / 166: GetSalesReps_ByQuoteNum - The metadata could not be determined because statement 'INSERT INTO #OpenRepsByQuote
+		SELECT [SDDOCO], [SDDCTO], [SDLNID], [SDVR01]
+		FROM F4211__Detail' in procedure 'GetSalesReps_ByQuoteNum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 103 / 166: IsItemPartOrWhole - The metadata could not be determined because the statement 'SELECT     'PAR' as IMSRP1, F57PRIC6.AC04 -- return item type, price grp
+					FROM       F57PRIC6' in procedure 'IsItemPartOrWhole' is not compatible with the statement 'SELECT     'WHOLE' as IMSRP1, F57PRIC6.AC04, F57PRIC6.CFDSC1 -- return item type, price grp, isNet' in procedure 'IsItemPartOrWhole'.
+2020-09-03 11:24:08 - EXCEPTION 104 / 166: Open_Orders__ByDateRange - The metadata could not be determined because statement 'INSERT INTO #OpenRecords
+	SELECT DISTINCT F42160__Detail.[SDDOCO], F42160__Detail.[SDDCTO], F42160_' in procedure 'Open_Orders__ByDateRange' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 105 / 166: Open_Orders__ByRegion_ByDateRange - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRegion
+		SELECT fd.*,
+				 CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DEC' in procedure 'Open_Orders__ByRegion_ByDateRange' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 106 / 166: Open_Orders__ByRep_ByDateRange - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+			SELECT DISTINCT F4211__Detail.[SDDOCO], F4211__Detail.[SDDCTO], F4' in procedure 'Open_Orders__ByRep_ByDateRange' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 107 / 166: Open_Orders__BySalesRep - The metadata could not be determined because statement 'INSERT INTO #OpenRecords
+		SELECT DISTINCT F42160__Detail.[SDDOCO], F42160__Detail.[SDDCTO], F42160' in procedure 'Open_Orders__BySalesRep' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 108 / 166: Open_Orders__ByShipTo - The metadata could not be determined because statement 'INSERT INTO #OpenRecords
+	SELECT F4211__Detail.*,
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIM' in procedure 'Open_Orders__ByShipTo' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 109 / 166: Open_Orders__ByShipTo_ByPO_ByBranch - The metadata could not be determined because statement 'INSERT INTO #OpenRecords
+	SELECT F4211__Detail.*,
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIM' in procedure 'Open_Orders__ByShipTo_ByPO_ByBranch' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 110 / 166: Open_Orders__ByShipTo_ByPO_Private - The metadata could not be determined because statement 'INSERT INTO #OpenRecords
+	SELECT F4211__Detail.*,
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIM' in procedure 'Open_Orders__ByShipTo_ByPO_Private' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 111 / 166: Open_Orders__BySoldTo - The metadata could not be determined because statement 'INSERT INTO #OpenRecords
+	SELECT F4211__Detail.* , 
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DEC' in procedure 'Open_Orders__BySoldTo' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 112 / 166: Open_Orders__Expo - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByExpoOrders
+	SELECT F4211__Detail.[SDDOCO], F4211__Detail.[SDDCTO] , F4211' in procedure 'Open_Orders__Expo' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 113 / 166: Open_Orders__Signature - The metadata could not be determined because statement 'INSERT INTO #OpenSigOrders
+		SELECT DISTINCT F4211__Detail.[SDDOCO], F4211__Detail.[SDDCTO],' in procedure 'Open_Orders__Signature' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 114 / 166: Open_Orders__Today - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByToday
+	SELECT FD.*,F.SDRSDJ_GR,
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000' in procedure 'Open_Orders__Today' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 115 / 166: Open_Orders__Top50 - The metadata could not be determined because statement 'INSERT INTO #OpenRecords
+	SELECT DISTINCT F42160__Detail.[SDDOCO], F42160__Detail.[SDDCTO],' in procedure 'Open_Orders__Top50' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 116 / 166: Open_Orders_ByItemNum - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByItemNum
+	SELECT fd.*,
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL' in procedure 'Open_Orders_ByItemNum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 117 / 166: Open_Orders_ByPONum - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByPO
+	SELECT fd.*,CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL) as SDL' in procedure 'Open_Orders_ByPONum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 118 / 166: Open_Orders_ByPONumORG - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByPO
+	SELECT *
+	FROM F4211__Detail 
+	WHERE F4211__Detail.[SDVR01] = @poNu' in procedure 'Open_Orders_ByPONumORG' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 119 / 166: Open_Orders_ByQuoteNum - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByQ
+	SELECT fd.*,CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL) as SDLP' in procedure 'Open_Orders_ByQuoteNum' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 120 / 166: Open_Totals__ByRegion_ByDateRange - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRegion
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID' in procedure 'Open_Totals__ByRegion_ByDateRange' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 121 / 166: Open_Totals__ByRep_ByDateRange - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__ByRep_ByDateRange' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 122 / 166: Open_Totals__ByRep_ByDateRange_Combo - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__ByRep_ByDateRange_Combo' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 123 / 166: Open_Totals__ByRep_ByDateRange_Combo_Commit_Merge - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__ByRep_ByDateRange_Combo_Commit_Merge' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 124 / 166: Open_Totals__ByRep_ByDateRange_Combo_Merge - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__ByRep_ByDateRange_Combo_Merge' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 125 / 166: Open_Totals__ByRep_ByDateRange_NoCombo - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__ByRep_ByDateRange_NoCombo' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 126 / 166: Open_Totals__ByRep_ByDateRange_NoCombo_Commit_Merge - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__ByRep_ByDateRange_NoCombo_Commit_Merge' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 127 / 166: Open_Totals__ByRep_ByDateRange_NoCombo_Merge - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__ByRep_ByDateRange_NoCombo_Merge' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 128 / 166: Open_Totals__ByTaxID_ByDateRange_Combo_Reps - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__ByTaxID_ByDateRange_Combo_Reps' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 129 / 166: Open_Totals__TodayByRegion - The metadata could not be determined because statement 'INSERT INTO #OpenTodayByRegion
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__TodayByRegion' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 130 / 166: Open_Totals__TodayByRep - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__TodayByRep' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 131 / 166: Open_Totals__TodayByRep_NoCombo - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__TodayByRep_NoCombo' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 132 / 166: Open_Totals__TodayByRep_NoCombo_Merge - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals__TodayByRep_NoCombo_Merge' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 133 / 166: Open_Totals_ByTAXID_ComboReps - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals_ByTAXID_ComboReps' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 134 / 166: Open_Totals_Today_Combo_Reps - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals_Today_Combo_Reps' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 135 / 166: Open_Totals_TodayByComboRep - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals_TodayByComboRep' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 136 / 166: Open_Totals_TodayByComboRep_Merge - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByRep
+		SELECT
+			F4211.[SDDOCO],
+			F4211.[SDDCTO],
+			F4211.[SDLNID],' in procedure 'Open_Totals_TodayByComboRep_Merge' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 137 / 166: OrderSearch_HistoryDetailByOrderNumber - The metadata could not be determined because statement 'INSERT INTO #OrderHistoryDetail
+	SELECT	fd.*,  
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL' in procedure 'OrderSearch_HistoryDetailByOrderNumber' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 138 / 166: OrderSearch_HistoryDetailByOrderNumberORG - The metadata could not be determined because statement 'INSERT INTO #OrderHistoryDetail
+	SELECT	F42119__Detail.*
+	FROM		F42119__Detail
+	WHERE	([SDDOCO] =' in procedure 'OrderSearch_HistoryDetailByOrderNumberORG' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 139 / 166: OrderSearch_HistoryDetailShipmentByOrderNumber - The metadata could not be determined because statement 'INSERT INTO #OrderHistoryDetail
+	SELECT	fd.*,  
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL' in procedure 'OrderSearch_HistoryDetailShipmentByOrderNumber' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 140 / 166: OrderSearch_OpenDetailByLine - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByOrdNum
+	SELECT FD.*, F.SDRSDJ_GR, 
+	CAST(f.SDLPRC AS DECIMAL) / CAST(100' in procedure 'OrderSearch_OpenDetailByLine' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 141 / 166: OrderSearch_OpenDetailByOrderNumber - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByOrdNum
+	SELECT FD.*, F.SDRSDJ_GR, 
+	CAST(f.SDLPRC AS DECIMAL) / CAST(100' in procedure 'OrderSearch_OpenDetailByOrderNumber' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 142 / 166: OrderSearch_OpenDetailByOrderNumberORG - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByOrdNum
+	SELECT *
+	FROM F4211__Detail 
+	WHERE [SDDOCO] = @orderNumber  A' in procedure 'OrderSearch_OpenDetailByOrderNumberORG' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 143 / 166: OrderSearch_OpenDetailShipmentByOrderNumber - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByOrdNum
+	SELECT FD.*, F.SDRSDJ_GR,
+	CAST(f.SDLPRC AS DECIMAL) / CAST(1000' in procedure 'OrderSearch_OpenDetailShipmentByOrderNumber' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 144 / 166: OrderSearch_ShipmentTrackingByOrderNumber - The metadata could not be determined because statement 'INSERT INTO #TrackingByOrdNum
+	SELECT DISTINCT [FDDOCO], [FRTCO], [FD55TRN]
+	FROM  F554205
+	WHERE' in procedure 'OrderSearch_ShipmentTrackingByOrderNumber' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 145 / 166: OrderSearch_ShipmentTrackingByOrderNumberandInvoiceDt - The metadata could not be determined because statement 'INSERT INTO #TrackingByOrdNum
+		SELECT DISTINCT [SDDOCO] as FDDOCO, [SDCARS] as FRTCO , [SDDSC1] as' in procedure 'OrderSearch_ShipmentTrackingByOrderNumberandInvoiceDt' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 146 / 166: PickSlip_DetailByOrderNumber - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByOrdNum
+	SELECT FD.*, F.SDRSDJ_GR, 
+	CAST(f.SDLPRC AS DECIMAL) / CAST(100' in procedure 'PickSlip_DetailByOrderNumber' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 147 / 166: PickSlipAdvance_DetailByOrderNumber - The metadata could not be determined because statement 'INSERT INTO #OpenRecordsByOrdNum
+	SELECT FD.*, F.SDRSDJ_GR, 
+	CAST(f.SDLPRC AS DECIMAL) / CAST(100' in procedure 'PickSlipAdvance_DetailByOrderNumber' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 148 / 166: PickSlipAdvance_HistoryDetailByOrderNumber - The metadata could not be determined because statement 'INSERT INTO #OrderHistoryDetail
+	SELECT	fd.*,  
+	CAST(f.SDLPRC AS DECIMAL) / CAST(10000 AS DECIMAL' in procedure 'PickSlipAdvance_HistoryDetailByOrderNumber' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 149 / 166: Sales_Orders__ProductFamRevenue - The metadata could not be determined because statement 'INSERT INTO #ProductFamRevenue
+		SELECT        Code, Description, SUM(Revenue) AS TotalRevenue, SUM' in procedure 'Sales_Orders__ProductFamRevenue' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 150 / 166: SymLeadTool_AddProduct - Invalid object name 'SymLeadTool_Products'.
+The metadata could not be determined because every code path results in an error; see previous errors for some of these.
+2020-09-03 11:24:08 - EXCEPTION 151 / 166: SymLeadTool_DeleteProduct - Invalid object name 'SymLeadTool_Products'.
+The metadata could not be determined because every code path results in an error; see previous errors for some of these.
+2020-09-03 11:24:08 - EXCEPTION 152 / 166: SymLeadTool_DeleteRelationshipDupes - The metadata could not be determined because statement 'INSERT INTO #DupeRelationships
+		SELECT DISTINCT a.Lead_ID, a.Contact_ID
+		FROM SymLeadTool_Relati' in procedure 'SymLeadTool_DeleteRelationshipDupes' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 153 / 166: SymLeadTool_GetLeadsByContact - The metadata could not be determined because statement 'INSERT INTO #LeadsByContact
+		SELECT DISTINCT SymLeadTool_Leads.Lead_ID, SymLeadTool_Leads.LeadName' in procedure 'SymLeadTool_GetLeadsByContact' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 154 / 166: SymLeadTool_GetLeadsStatusesByRep - The metadata could not be determined because statement 'INSERT INTO #AgencyLookUp
+		SELECT ISNULL(SymPortal_UserData__AgencyLookup.[Agency], SymPortal_User' in procedure 'SymLeadTool_GetLeadsStatusesByRep' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 155 / 166: SymLeadTool_GetNotesByLead - Invalid object name 'SymLeadTool_Notes'.
+The metadata could not be determined because every code path results in an error; see previous errors for some of these.
+2020-09-03 11:24:08 - EXCEPTION 156 / 166: SymLeadTool_GetProductsByLead - Invalid object name 'SymLeadTool_Products'.
+The metadata could not be determined because every code path results in an error; see previous errors for some of these.
+2020-09-03 11:24:08 - EXCEPTION 157 / 166: SymPortal_GetURLNavInfo - The metadata could not be determined because the statement 'SELECT DISTINCT 
+		SymPortal_URLs.[PortalCategory_ID], 
+		SymPortal_PortalCategories.[PortalCatego' in procedure 'SymPortal_GetURLNavInfo' is not compatible with the statement 'SELECT DISTINCT 
+		SymPortal_PortalCategories.[PortalCategory_ID], 
+		SymPortal_PortalCategories.[' in procedure 'SymPortal_GetURLNavInfo'.
+2020-09-03 11:24:08 - EXCEPTION 158 / 166: SymSigTool_GetActiveTaskSchedule - The metadata could not be determined because statement 'INSERT INTO #ActiveRemainingTasks
+		SELECT [ActionDate], [IsCompleted], ISNULL((SELECT TOP 1 [IsPen' in procedure 'SymSigTool_GetActiveTaskSchedule' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 159 / 166: SymSigTool_GetProjectPhases - The metadata could not be determined because statement 'INSERT INTO #PhaseBreakdown
+			SELECT -1, 'Pending Approval', COUNT(Project_ID), 0, -1 
+			FROM Sy' in procedure 'SymSigTool_GetProjectPhases' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 160 / 166: SymSigTool_GetProjectPhasesSummary - The metadata could not be determined because statement 'INSERT INTO #PhaseBreakdown
+			SELECT -1, 'Pending Approval', COUNT(Project_ID), 0, -1 
+			FROM Sy' in procedure 'SymSigTool_GetProjectPhasesSummary' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 161 / 166: uspGetContainersJson - The metadata could not be determined because statement 'INSERT INTO #tmpBus
+EXEC(@sql)' in procedure 'uspGetContainersJson' uses a temp table.
+2020-09-03 11:24:08 - EXCEPTION 162 / 166: uspGetDemandItemsbyOriginalOrderDate - The metadata could not be determined because statement 'EXEC(@sqlQry + @rowFilter + @sqlQry2)' in procedure 'uspGetDemandItemsbyOriginalOrderDate'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 163 / 166: uspGetDemandItemsbyOriginalOrderDate_DrillDown - The metadata could not be determined because statement 'EXEC(@sqlQry)' in procedure 'uspGetDemandItemsbyOriginalOrderDate_DrillDown'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 164 / 166: uspGetOrdersInProcessbyEstimatedShipDate - The metadata could not be determined because statement 'EXECUTE(@sqlQry+@sqlQry2+@sqlQry3)' in procedure 'uspGetOrdersInProcessbyEstimatedShipDate'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 165 / 166: uspGetOrdersInProcessbyEstimatedShipDate2 - The metadata could not be determined because statement 'EXECUTE(@sqlQry+@sqlQry2+@sqlQry3)' in procedure 'uspGetOrdersInProcessbyEstimatedShipDate2'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.
+2020-09-03 11:24:08 - EXCEPTION 166 / 166: uspGetOrdersInProcessbyEstimatedShipDateOLD - The metadata could not be determined because statement 'EXEC(@sqlQry)' in procedure 'uspGetOrdersInProcessbyEstimatedShipDateOLD'  contains dynamic SQL.  Consider using the WITH RESULT SETS clause to explicitly describe the result set.

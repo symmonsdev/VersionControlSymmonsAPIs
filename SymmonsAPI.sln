@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymmonsAPI", "SymmonsAPI\SymmonsAPI.csproj", "{C2ADCD1A-9DB0-4B71-B61E-66FBBA9FCFB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAPI", "DataAPI\DataAPI.csproj", "{9A5F1CB6-4685-4934-8EEC-3A74006C6433}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2ADCD1A-9DB0-4B71-B61E-66FBBA9FCFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2ADCD1A-9DB0-4B71-B61E-66FBBA9FCFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2ADCD1A-9DB0-4B71-B61E-66FBBA9FCFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2ADCD1A-9DB0-4B71-B61E-66FBBA9FCFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A5F1CB6-4685-4934-8EEC-3A74006C6433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A5F1CB6-4685-4934-8EEC-3A74006C6433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A5F1CB6-4685-4934-8EEC-3A74006C6433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A5F1CB6-4685-4934-8EEC-3A74006C6433}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A141364-CEF2-4456-B9A3-008A7408FC10}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,33 @@
+﻿@model SymmonsAPI.Models.TokenModel
+@{
+    ViewData["Title"] = "Token Page";
+}
+
+<div class="text-left">
+    <h1 class="display-4">JSON Web Token (JWT)</h1>
+    <div id="message">  @*class="d-flex flex-column"*@
+        <br />
+        <label>Bearer Token:</label>
+        <br />
+        <textarea id="clipText" rows="3" cols="75">@(new Microsoft.AspNetCore.Html.HtmlString(Model.Value))</textarea>
+        <input type="button" onclick="copyToClipboard()" value="Copy" />
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    function copyToClipboard() {
+        /* Get the textarea */
+        var copyText = document.getElementById("clipText");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+        /* debug */
+        alert("Copied this to clipboard: " + copyText.value);
+    }
+</script>
