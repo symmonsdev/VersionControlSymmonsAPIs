@@ -65,7 +65,7 @@ namespace SymmonsAPI.Controllers
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
-              expires: DateTime.Now.AddMinutes(60),
+              expires: DateTime.Now.AddHours(4),
               signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
