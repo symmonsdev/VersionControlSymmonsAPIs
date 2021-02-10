@@ -27,6 +27,8 @@ namespace DataAPI.Models
         private DbSet<Open_Orders__ByShipToResult> Open_Orders__ByPO_BillTo { get; set; }
         private DbSet<Shipment_TrackingResult> Shipment_Tracking { get; set; }
         private DbSet<Customer_InfoResult> Customer_Info { get; set; }
+        private DbSet<IsItemPartOrWholeResult> IsItemPartOrWhole { get; set; }
+        private DbSet<GetPriceGroupResult> GetPriceGroup { get; set; }
         private DbSet<Address_Book__GetAddressWithEmailResult> Address_Book__GetAddressWithEmail { get; set; }
         private DbSet<Address_Book__GetComboRepsResult> Address_Book__GetComboReps { get; set; }
         private DbSet<Address_Book__GetNameResult> Address_Book__GetName { get; set; }
@@ -41,6 +43,8 @@ namespace DataAPI.Models
             modelBuilder.Query<Open_Orders__ByShipToResult>().HasNoKey();
             modelBuilder.Query<Shipment_TrackingResult>().HasNoKey();
             modelBuilder.Query<Customer_InfoResult>().HasNoKey();
+            modelBuilder.Query<IsItemPartOrWholeResult>().HasNoKey();
+            modelBuilder.Query<GetPriceGroupResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetAddressWithEmailResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetComboRepsResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetNameResult>().HasNoKey();
@@ -48,6 +52,66 @@ namespace DataAPI.Models
             base.OnModelCreating(modelBuilder);
         }
 
+        public async Task<List<GetPriceGroupResult>> GetPriceGroupAsync(string branchnbr)
+        {
+            //Initialize Result 
+            List<GetPriceGroupResult> lst = new List<GetPriceGroupResult>();
+            try
+            {
+                // Parameters  @customerID
+                SqlParameter p_branchnbr = new SqlParameter("@BranchNum", branchnbr ?? (object)DBNull.Value);
+                p_branchnbr.Direction = ParameterDirection.Input;
+                p_branchnbr.DbType = DbType.String;
+                p_branchnbr.Size = 25;
+
+
+                // Processing 
+                string sqlQuery = $@"EXEC [dbo].[Get_PriceGroup_CP] @BranchNum";
+
+                //Output Data
+                lst = await this.GetPriceGroup.FromSqlRaw(sqlQuery, p_branchnbr).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //Return
+            return lst;
+        }
+
+        public async Task<List<IsItemPartOrWholeResult>> IsItemPartOrWholeAsync(string sku, string custnbr)
+        {
+            //Initialize Result 
+            List<IsItemPartOrWholeResult> lst = new List<IsItemPartOrWholeResult>();
+            try
+            {
+                // Parameters  @ItemNbr @customerID
+                SqlParameter p_sku = new SqlParameter("@ItemNbr", sku ?? (object)DBNull.Value);
+                p_sku.Direction = ParameterDirection.Input;
+                p_sku.DbType = DbType.String;
+                p_sku.Size = 25;
+
+                SqlParameter p_custnbr = new SqlParameter("@customerID", custnbr ?? (object)DBNull.Value);
+                p_custnbr.Direction = ParameterDirection.Input;
+                p_custnbr.DbType = DbType.String;
+                p_custnbr.Size = 10;
+
+
+                // Processing 
+                string sqlQuery = $@"EXEC [dbo].[IsItemPartOrWhole_CP] @ItemNbr, @customerID";
+
+                //Output Data
+                lst = await this.IsItemPartOrWhole.FromSqlRaw(sqlQuery, p_sku, p_custnbr).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //Return
+            return lst;
+        }
 
         public async Task<List<Open_Orders__ByShipToResult>> Open_Orders__ByShipToAsync(int? addrNum, DateTime? fromDate, string userName)
         {
@@ -369,6 +433,20 @@ namespace DataAPI.Models
             public string City { get; set; }
             public string State { get; set; }
             public string Zip_Code { get; set; }
+
+        }
+
+        public class IsItemPartOrWholeResult
+        {
+            public string ItemType { get; set; }
+            public string PriceGrp { get; set; }
+            public string IsNet { get; set; }
+
+        }
+
+        public class GetPriceGroupResult
+        {
+            public string Country_Code { get; set; }
 
         }
 
