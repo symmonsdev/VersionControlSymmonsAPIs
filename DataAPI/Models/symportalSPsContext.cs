@@ -29,6 +29,7 @@ namespace DataAPI.Models
         private DbSet<Customer_InfoResult> Customer_Info { get; set; }
         private DbSet<IsItemPartOrWholeResult> IsItemPartOrWhole { get; set; }
         private DbSet<GetPriceGroupResult> GetPriceGroup { get; set; }
+        private DbSet<NetPriceResult> NetPrice { get; set; }
         private DbSet<Address_Book__GetAddressWithEmailResult> Address_Book__GetAddressWithEmail { get; set; }
         private DbSet<Address_Book__GetComboRepsResult> Address_Book__GetComboReps { get; set; }
         private DbSet<Address_Book__GetNameResult> Address_Book__GetName { get; set; }
@@ -45,11 +46,93 @@ namespace DataAPI.Models
             modelBuilder.Query<Customer_InfoResult>().HasNoKey();
             modelBuilder.Query<IsItemPartOrWholeResult>().HasNoKey();
             modelBuilder.Query<GetPriceGroupResult>().HasNoKey();
+            modelBuilder.Query<NetPriceResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetAddressWithEmailResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetComboRepsResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetNameResult>().HasNoKey();
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public async Task<List<NetPriceResult>> Get_Parts_Price_CPAsync(string sku, string pricegrp, Decimal custnbr)
+        {
+            //Initialize Result 
+            List<NetPriceResult> lst = new List<NetPriceResult>();
+            try
+            {
+
+                // Parameters  @ItemNbr @pricegrp @customerID @isNet
+                SqlParameter p_sku = new SqlParameter("@sku", sku ?? (object)DBNull.Value);
+                p_sku.Direction = ParameterDirection.Input;
+                p_sku.DbType = DbType.String;
+                p_sku.Size = 25;
+
+                SqlParameter p_pricegrp = new SqlParameter("@priceGrp", pricegrp ?? (object)DBNull.Value);
+                p_pricegrp.Direction = ParameterDirection.Input;
+                p_pricegrp.DbType = DbType.String;
+                p_pricegrp.Size = 3;
+
+                SqlParameter p_custnbr = new SqlParameter("@customerID", (object)custnbr ?? DBNull.Value);
+                p_custnbr.Direction = ParameterDirection.Input;
+                p_custnbr.DbType = DbType.Decimal;
+                p_custnbr.Size = 10;
+
+                // Processing 
+                string sqlQuery = $@"EXEC [dbo].[Get_Parts_Price_CP] @sku, @priceGrp, @customerID";
+
+                //Output Data
+                lst = await this.NetPrice.FromSqlRaw(sqlQuery, p_sku, p_pricegrp, p_custnbr).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //Return
+            return lst;
+        }
+
+        public async Task<List<NetPriceResult>> Get_WholeGoods_PriceAsync(string sku, string pricegrp, Decimal custnbr, string isnet)
+        {
+            //Initialize Result 
+            List<NetPriceResult> lst = new List<NetPriceResult>();
+            try
+            {
+
+                // Parameters  @ItemNbr @pricegrp @customerID @isNet
+                SqlParameter p_sku = new SqlParameter("@sku", sku ?? (object)DBNull.Value);
+                p_sku.Direction = ParameterDirection.Input;
+                p_sku.DbType = DbType.String;
+                p_sku.Size = 25;
+
+                SqlParameter p_pricegrp = new SqlParameter("@priceGrp", pricegrp ?? (object)DBNull.Value);
+                p_pricegrp.Direction = ParameterDirection.Input;
+                p_pricegrp.DbType = DbType.String;
+                p_pricegrp.Size = 3;
+
+                SqlParameter p_custnbr = new SqlParameter("@customerID", (object)(custnbr) ?? DBNull.Value);
+                p_custnbr.Direction = ParameterDirection.Input;
+                p_custnbr.DbType = DbType.Decimal;
+                p_custnbr.Size = 10;
+
+                SqlParameter p_isnet = new SqlParameter("@isNet", isnet ?? (object)DBNull.Value);
+                p_isnet.Direction = ParameterDirection.Input;
+                p_isnet.DbType = DbType.String;
+                p_isnet.Size = 3;
+
+                // Processing 
+                string sqlQuery = $@"EXEC [dbo].[Get_WholeGoods_Price_CustPort] @sku, @priceGrp, @customerID, @isNet";
+
+                //Output Data
+                lst = await this.NetPrice.FromSqlRaw(sqlQuery, p_sku, p_pricegrp, p_custnbr, p_isnet).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //Return
+            return lst;
         }
 
         public async Task<List<GetPriceGroupResult>> GetPriceGroupAsync(string branchnbr)
@@ -447,6 +530,14 @@ namespace DataAPI.Models
         public class GetPriceGroupResult
         {
             public string Country_Code { get; set; }
+
+        }
+
+        public class NetPriceResult
+        {
+            public Decimal? CustomerID { get; set; }
+            public string SKU { get; set; }
+            public Decimal? Net_Price { get; set; }
 
         }
 
