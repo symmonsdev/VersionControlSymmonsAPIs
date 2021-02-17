@@ -13,7 +13,7 @@ namespace DataAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IsItemPartOrWholeController : ControllerBase
+    public class IsItemPartOrWholeGoodController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<IsItemPartOrWholeResult> IsItemPartOrWhole(string SKU, string CustID)

@@ -282,7 +282,7 @@ namespace DataAPI.Models
             return lst;
         }
 
-        public async Task<List<Shipment_TrackingResult>> Shipment_TrackingAsync(int? OrderNbr, String Doc_Type, string user, DateTime? Invoice_Dt)
+        public async Task<List<Shipment_TrackingResult>> Shipment_TrackingAsync(int? OrderNbr, String Ord_Type, DateTime? Invoice_Dt)
         {
 
             //Initialize Result 
@@ -295,15 +295,10 @@ namespace DataAPI.Models
                 p_OrderNbr.DbType = DbType.Int32;
                 p_OrderNbr.Size = 4;
 
-                SqlParameter p_Doc_Type = new SqlParameter("@documentType", Doc_Type ?? (object)DBNull.Value);
-                p_Doc_Type.Direction = ParameterDirection.Input;
-                p_Doc_Type.DbType = DbType.String;
-                p_Doc_Type.Size = 10;
-
-                SqlParameter p_user = new SqlParameter("@userName", user ?? (object)DBNull.Value);
-                p_user.Direction = ParameterDirection.Input;
-                p_user.DbType = DbType.String;
-                p_user.Size = 100;
+                SqlParameter p_Ord_Type = new SqlParameter("@documentType", Ord_Type ?? (object)DBNull.Value);
+                p_Ord_Type.Direction = ParameterDirection.Input;
+                p_Ord_Type.DbType = DbType.String;
+                p_Ord_Type.Size = 10;
 
                 SqlParameter p_Invoice_Dt = new SqlParameter("@InvDate", Invoice_Dt ?? (object)DBNull.Value);
                 p_Invoice_Dt.Direction = ParameterDirection.Input;
@@ -312,10 +307,10 @@ namespace DataAPI.Models
 
 
                 // Processing 
-                string sqlQuery = $@"EXEC [dbo].[OrderSearch_ShipmentTrackingByOrderNumberandInvoiceDt_CP] @orderNumber, @documentType, @userName, @InvDate";
+                string sqlQuery = $@"EXEC [dbo].[OrderSearch_ShipmentTrackingByOrderNumberandInvoiceDt_CustPort] @orderNumber, @documentType, @InvDate";
 
                 //Output Data
-                lst = await Shipment_Tracking.FromSqlRaw(sqlQuery, p_OrderNbr, p_Doc_Type, p_user, p_Invoice_Dt).ToListAsync();
+                lst = await Shipment_Tracking.FromSqlRaw(sqlQuery, p_OrderNbr, p_Ord_Type, p_Invoice_Dt).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -510,6 +505,7 @@ namespace DataAPI.Models
 
         public class Customer_InfoResult
         {
+            public string BillTo_Acct { get; set; }
             public int? ShipTo_Acct { get; set; }
             public string Customer_Name { get; set; }
             public string Address { get; set; }

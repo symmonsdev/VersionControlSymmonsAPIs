@@ -18,13 +18,13 @@ namespace DataAPI.Controllers
     {
 
             [HttpGet]
-            public IEnumerable<Shipment_TrackingResult> ShipmentTrackingByOrderNbrandInvoiceDt(int OrderNbr, String Doc_Type, string user, DateTime Invoice_Dt)
+            public IEnumerable<Shipment_TrackingResult> ShipmentTrackingByOrderNbrandInvoiceDt(int OrderNbr, String Ord_Type, DateTime Invoice_Dt)
             {
                 try
                 {
                     using (symportalSPsContext db = new symportalSPsContext())
                     {
-                        IEnumerable<Shipment_TrackingResult> TrackingInfo = db.Shipment_TrackingAsync(OrderNbr, Doc_Type, user, Invoice_Dt).Result.ToList();
+                        IEnumerable<Shipment_TrackingResult> TrackingInfo = db.Shipment_TrackingAsync(OrderNbr, Ord_Type, Invoice_Dt).Result.ToList();
 
                         return TrackingInfo;
                     }
