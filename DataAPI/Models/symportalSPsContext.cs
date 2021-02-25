@@ -31,6 +31,7 @@ namespace DataAPI.Models
         private DbSet<GetPriceGroupResult> GetPriceGroup { get; set; }
         private DbSet<NetPriceResult> NetPrice { get; set; }
         private DbSet<OrderSummaryResult> OrderSummary { get; set; }
+        private DbSet<OrderDetailResult> OrderDetail { get; set; }
         private DbSet<Address_Book__GetAddressWithEmailResult> Address_Book__GetAddressWithEmail { get; set; }
         private DbSet<Address_Book__GetComboRepsResult> Address_Book__GetComboReps { get; set; }
         private DbSet<Address_Book__GetNameResult> Address_Book__GetName { get; set; }
@@ -49,11 +50,46 @@ namespace DataAPI.Models
             modelBuilder.Query<GetPriceGroupResult>().HasNoKey();
             modelBuilder.Query<NetPriceResult>().HasNoKey();
             modelBuilder.Query<OrderSummaryResult>().HasNoKey();
+            modelBuilder.Query<OrderDetailResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetAddressWithEmailResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetComboRepsResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetNameResult>().HasNoKey();
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public async Task<List<OrderDetailResult>> GetOrderDetail_OrdNbrAsync(Decimal ordnbr, string ordStatus)
+        {
+            //Initialize Result 
+            List<OrderDetailResult> lst = new List<OrderDetailResult>();
+            try
+            {
+
+                // Parameters  @OrderNbr, @OrdStatus
+                SqlParameter p_ordnbr = new SqlParameter("@OrderNbr", (object)ordnbr ?? DBNull.Value);
+                p_ordnbr.Direction = ParameterDirection.Input;
+                p_ordnbr.DbType = DbType.Decimal;
+                p_ordnbr.Size = 10;
+
+                SqlParameter p_ordstatus = new SqlParameter("@OrdStatus", ordStatus ?? (object)DBNull.Value);
+                p_ordstatus.Direction = ParameterDirection.Input;
+                p_ordstatus.DbType = DbType.String;
+                p_ordstatus.Size = 10;
+
+                // Processing 
+                string sqlQuery = $@"EXEC [dbo].[OrderDetail_ByOrdNbr_CP] @OrderNbr, @OrdStatus";
+
+                //Output Data
+                lst = await this.OrderDetail.FromSqlRaw(sqlQuery, p_ordnbr, p_ordstatus).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                //return (IEnumerable<OrderDetailResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+            }
+
+            //Return
+            return lst;
         }
 
         public async Task<List<OrderSummaryResult>> GetOrderSummary_ShipToAsync(Decimal custnbr, string ordStatus, string ordType, DateTime? startDate, DateTime? endDate)
@@ -63,7 +99,7 @@ namespace DataAPI.Models
             try
             {
 
-                // Parameters  @ItemNbr @pricegrp @customerID @isNet
+                // Parameters  @OrdStatus, @OrdType, @StartDate, @EndDate
                 SqlParameter p_custnbr = new SqlParameter("@ShipTo", (object)custnbr ?? DBNull.Value);
                 p_custnbr.Direction = ParameterDirection.Input;
                 p_custnbr.DbType = DbType.Decimal;
@@ -112,7 +148,7 @@ namespace DataAPI.Models
             try
             {
 
-                // Parameters  @ItemNbr @pricegrp @customerID @isNet
+                // Parameters  @sku, @priceGrp, @customerID
                 SqlParameter p_sku = new SqlParameter("@sku", sku ?? (object)DBNull.Value);
                 p_sku.Direction = ParameterDirection.Input;
                 p_sku.DbType = DbType.String;
@@ -150,7 +186,7 @@ namespace DataAPI.Models
             try
             {
 
-                // Parameters  @ItemNbr @pricegrp @customerID @isNet
+                // Parameters  @sku, @priceGrp, @customerID, @isNet
                 SqlParameter p_sku = new SqlParameter("@sku", sku ?? (object)DBNull.Value);
                 p_sku.Direction = ParameterDirection.Input;
                 p_sku.DbType = DbType.String;
@@ -598,7 +634,27 @@ namespace DataAPI.Models
             public Decimal? Total_Extended_Price { get; set; }
             public Decimal? Wholesaler_ID { get; set; }
             public string Wholesaler { get; set; }
-}
+        }
+
+        public class OrderDetailResult
+        {
+            public Decimal? Order_Number { get; set; }
+            public DateTime? Order_Date { get; set; }
+            public string Order_Type { get; set; }
+            public Decimal? Invoice_Number { get; set; }
+            public DateTime? Invoice_Date { get; set; }
+            public DateTime? Est_Ship_Date { get; set; }
+            public string PO_Number { get; set; }
+            public Decimal? Line_Nbr { get; set; }
+            public string SKU { get; set; }
+            public string SKU_Desc { get; set; }
+            public Decimal? Order_Qty { get; set; }
+            public Decimal? Extended_Price { get; set; }
+            public string Shipped_Status { get; set; }
+            public string Pack_Slip_URL { get; set; }
+            public string Invoice_URL { get; set; }
+            public string Tracking_URL { get; set; }
+        }
 
         public class Open_Orders__ByShip2ToResult
         {
