@@ -16,7 +16,7 @@ namespace DataAPI.Controllers
     public class CustomerInfoByBillToController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<Customer_InfoResult> GetCustomerInfo_ByBillTo(string BillToID, string StateProv)
+        public IEnumerable<Customer_InfoResult> GetCustomerInfo_ByBillTo(Decimal BillToID, string StateProv)
         {
             try
             {

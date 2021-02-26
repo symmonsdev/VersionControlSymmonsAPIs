@@ -458,14 +458,14 @@ namespace DataAPI.Models
             return lst;
         }
 
-        public async Task<List<Customer_InfoResult>> GetCustomerInfo_ByBillToAsync(string BillToID, string StateProv)
+        public async Task<List<Customer_InfoResult>> GetCustomerInfo_ByBillToAsync(Decimal BillToID, string StateProv)
         {
             //Initialize Result 
             List<Customer_InfoResult> lst = new List<Customer_InfoResult>();
             try
             {
                 // Parameters 
-                SqlParameter p_billToID = new SqlParameter("@ParentAcctNbr", BillToID ?? (object)DBNull.Value);
+                SqlParameter p_billToID = new SqlParameter("@ParentAcctNbr", (object)BillToID ?? DBNull.Value);
                 p_billToID.Direction = ParameterDirection.Input;
                 p_billToID.DbType = DbType.String;
                 p_billToID.Size = 25;
@@ -490,16 +490,16 @@ namespace DataAPI.Models
             return lst;
         }
 
-        public async Task<List<Customer_InfoResult>> GetCustomerInfo_ByShipToAsync(string ShipToID)
+        public async Task<List<Customer_InfoResult>> GetCustomerInfo_ByShipToAsync(Decimal ShipToID)
         {
             //Initialize Result
             List<Customer_InfoResult> lst = new List<Customer_InfoResult>();
             try
             {
                 // Parameters 
-                SqlParameter p_shipToID = new SqlParameter("@BranchAcctNbr", ShipToID ?? (object)DBNull.Value);
+                SqlParameter p_shipToID = new SqlParameter("@BranchAcctNbr", (object)ShipToID ?? DBNull.Value);
                 p_shipToID.Direction = ParameterDirection.Input;
-                p_shipToID.DbType = DbType.String;
+                p_shipToID.DbType = DbType.Decimal;
                 p_shipToID.Size = 25;
 
                 // Processing 
@@ -669,8 +669,8 @@ namespace DataAPI.Models
 
         public class Customer_InfoResult
         {
-            public string BillTo_Acct { get; set; }
-            public int? ShipTo_Acct { get; set; }
+            public Decimal? BillTo_Acct { get; set; }
+            public Decimal? ShipTo_Acct { get; set; }
             public string Customer_Name { get; set; }
             public string Address { get; set; }
             public string City { get; set; }

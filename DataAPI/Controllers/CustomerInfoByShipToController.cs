@@ -16,7 +16,7 @@ namespace DataAPI.Controllers
     public class CustomerInfoByShipToController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<Customer_InfoResult> GetCustomerInfo_ByShipTo(string ShipToID)
+        public IEnumerable<Customer_InfoResult> GetCustomerInfo_ByShipTo(Decimal ShipToID)
         {
             try
             {
