@@ -460,7 +460,6 @@ namespace DataAPI.Models
 
         public async Task<List<Customer_InfoResult>> GetCustomerInfo_ByBillToAsync(string BillToID, string StateProv)
         {
-            //Open_Orders__ByShipToResult class will be used because output is same as ShipTo Controller
             //Initialize Result 
             List<Customer_InfoResult> lst = new List<Customer_InfoResult>();
             try
@@ -490,6 +489,34 @@ namespace DataAPI.Models
             //Return
             return lst;
         }
+
+        public async Task<List<Customer_InfoResult>> GetCustomerInfo_ByShipToAsync(string ShipToID)
+        {
+            //Initialize Result
+            List<Customer_InfoResult> lst = new List<Customer_InfoResult>();
+            try
+            {
+                // Parameters 
+                SqlParameter p_shipToID = new SqlParameter("@BranchAcctNbr", ShipToID ?? (object)DBNull.Value);
+                p_shipToID.Direction = ParameterDirection.Input;
+                p_shipToID.DbType = DbType.String;
+                p_shipToID.Size = 25;
+
+                // Processing 
+                string sqlQuery = $@"EXEC [dbo].[Get_Customers_ShipTo_CP] @BranchAcctNbr";
+
+                //Output Data
+                lst = await this.Customer_Info.FromSqlRaw(sqlQuery, p_shipToID).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //Return
+            return lst;
+        }
+
 
         public async Task<List<Address_Book__GetAddressWithEmailResult>> Address_Book__GetAddressWithEmailAsync(string userName, int? addrNum)
         {
