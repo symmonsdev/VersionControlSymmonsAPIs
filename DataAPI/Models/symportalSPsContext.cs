@@ -92,6 +92,60 @@ namespace DataAPI.Models
             return lst;
         }
 
+        public async Task<List<OrderSummaryResult>> GetOrderSummary_PONbrAsync(string ponbr, Decimal custnbr, string ordStatus, string ordType, DateTime? startDate, DateTime? endDate)
+        {
+            //Initialize Result 
+            List<OrderSummaryResult> lst = new List<OrderSummaryResult>();
+            try
+            {
+
+                // Parameters  @PONber, @BillTo, @OrdStatus, @OrdType, @StartDate, @EndDate
+                SqlParameter p_ponbr = new SqlParameter("@PONbr", ponbr ?? (object)DBNull.Value);
+                p_ponbr.Direction = ParameterDirection.Input;
+                p_ponbr.DbType = DbType.String;
+                p_ponbr.Size = 25;
+
+                SqlParameter p_custnbr = new SqlParameter("@BillTo", (object)custnbr ?? DBNull.Value);
+                p_custnbr.Direction = ParameterDirection.Input;
+                p_custnbr.DbType = DbType.Decimal;
+                p_custnbr.Size = 10;
+
+                SqlParameter p_ordstatus = new SqlParameter("@OrdStatus", ordStatus ?? (object)DBNull.Value);
+                p_ordstatus.Direction = ParameterDirection.Input;
+                p_ordstatus.DbType = DbType.String;
+                p_ordstatus.Size = 10;
+
+                SqlParameter p_ordType = new SqlParameter("@OrdType", ordType ?? (object)DBNull.Value);
+                p_ordType.Direction = ParameterDirection.Input;
+                p_ordType.DbType = DbType.String;
+                p_ordType.Size = 3;
+
+                SqlParameter p_startDate = new SqlParameter("@StartDate", startDate ?? (object)DBNull.Value);
+                p_startDate.Direction = ParameterDirection.Input;
+                p_startDate.DbType = DbType.DateTime;
+                p_startDate.Size = 25;
+
+                SqlParameter p_endDate = new SqlParameter("@EndDate", endDate ?? (object)DBNull.Value);
+                p_endDate.Direction = ParameterDirection.Input;
+                p_endDate.DbType = DbType.DateTime;
+                p_endDate.Size = 25;
+
+                // Processing 
+                string sqlQuery = $@"EXEC [dbo].[OrderSummary_ByPONbr_CP] @PONbr, @BillTo, @OrdStatus, @OrdType, @StartDate, @EndDate";
+
+                //Output Data
+                lst = await this.OrderSummary.FromSqlRaw(sqlQuery, p_ponbr, p_custnbr, p_ordstatus, p_ordType, p_startDate, p_endDate).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //Return
+            return lst;
+        }
+
+
         public async Task<List<OrderSummaryResult>> GetOrderSummary_BillToAsync(Decimal custnbr, string ordStatus, string ordType, DateTime? startDate, DateTime? endDate)
         {
             //Initialize Result 

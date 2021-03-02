@@ -67,7 +67,7 @@ namespace SymmonsAPI.Controllers
               _config["Jwt:Issuer"],
               expires: DateTime.Now.AddHours(4),
               signingCredentials: creds);
-
+            
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
