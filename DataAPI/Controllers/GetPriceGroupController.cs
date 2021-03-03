@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DataAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GetPriceGroupController : ControllerBase
