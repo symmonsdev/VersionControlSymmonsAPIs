@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -17,6 +19,7 @@ namespace SymmonsAPI.Controllers
     //[Route("api/[controller]")]
     //[ApiController]
     //public class TokenController : ControllerBase
+
     public class TokenController : Controller
     {
         private IConfiguration _config;
@@ -25,9 +28,11 @@ namespace SymmonsAPI.Controllers
         {
             _config = config;
         }
+        //private UserManager<ApplicationUser> _userManager;
 
         public IActionResult Index()
         {
+
             if (User.Identity.IsAuthenticated)
             {
                 var tokenString = BuildToken();
@@ -57,17 +62,29 @@ namespace SymmonsAPI.Controllers
         //    return response;
         //}
 
-        //private string BuildToken(UserModel user)
         private string BuildToken()
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            
+            ClaimsPrincipal currentUser = this.User;
+            var userId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userName = User.Identity.Name;
+
+            //create a identity and add claims to the user which we want to log in
+            var claims = new[]
+            {
+               new Claim(ClaimTypes.Name, userId),
+               new Claim(ClaimTypes.Name, userName)
+            };
+
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
+              claims: claims,
               expires: DateTime.Now.AddHours(4),
               signingCredentials: creds);
-            
+
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
