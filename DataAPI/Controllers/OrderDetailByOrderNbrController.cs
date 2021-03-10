@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DataAPI.Models;
 using static DataAPI.Models.symportalSPsContext;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
 
 namespace DataAPI.Controllers
 {
@@ -25,13 +26,21 @@ namespace DataAPI.Controllers
                 {
                     IEnumerable<OrderDetailResult> ordDetailInfo = db.GetOrderDetail_OrdNbrAsync(OrdNbr, OrdStatus).Result.ToList();
 
-                    return ordDetailInfo;
+                    if (ordDetailInfo.Count() == 0) 
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return ordDetailInfo;
+                    }
+                    else 
+                    { 
+                        return ordDetailInfo;
+                    }
                 }
             }
             catch (Exception ex)
             {
-
-                return (IEnumerable<OrderDetailResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                throw ex; //Error Controller will return error status code
+                //return (IEnumerable<OrderDetailResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
             }
         }
     }

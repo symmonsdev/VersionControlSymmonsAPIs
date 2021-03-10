@@ -26,12 +26,20 @@ namespace DataAPI.Controllers
                 {
                     IEnumerable<NetPriceResult> partsPriceInfo = db.Get_Parts_Price_CPAsync(SKU, PriceGrp, CustID).Result.ToList();
 
-                    return partsPriceInfo;
+                    if (partsPriceInfo.Count() == 0)
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return partsPriceInfo;
+                    }
+                    else
+                    {
+                        return partsPriceInfo;
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return (IEnumerable<NetPriceResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                throw ex; //Error Controller will return error status code            
             }
         }
     }

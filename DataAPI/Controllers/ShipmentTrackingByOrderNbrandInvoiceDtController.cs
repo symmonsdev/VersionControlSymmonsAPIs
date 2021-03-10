@@ -24,16 +24,24 @@ namespace DataAPI.Controllers
                 {
                     using (symportalSPsContext db = new symportalSPsContext())
                     {
-                        IEnumerable<Shipment_TrackingResult> TrackingInfo = db.Shipment_TrackingAsync(OrderNbr, Ord_Type, Invoice_Dt).Result.ToList();
+                        IEnumerable<Shipment_TrackingResult> trackingInfo = db.Shipment_TrackingAsync(OrderNbr, Ord_Type, Invoice_Dt).Result.ToList();
 
-                        return TrackingInfo;
+                    if (trackingInfo.Count() == 0)
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return trackingInfo;
+                    }
+                    else
+                    {
+                        return trackingInfo;
                     }
                 }
-                catch (Exception)
-                {
-                    return (IEnumerable<Shipment_TrackingResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
-                }
             }
+            catch (Exception ex)
+            {
+                throw ex; //Error Controller will return error status code            
+            }
+        }
 
     }
 

@@ -25,12 +25,20 @@ namespace DataAPI.Controllers
                 {
                     IEnumerable<GetPriceGroupResult> priceGrpInfo = db.GetPriceGroupAsync(BranchID).Result.ToList();
 
-                    return priceGrpInfo;
+                    if (priceGrpInfo.Count() == 0)
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return priceGrpInfo;
+                    }
+                    else
+                    {
+                        return priceGrpInfo;
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return (IEnumerable<GetPriceGroupResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                throw ex; //Error Controller will return error status code            
             }
         }
     }

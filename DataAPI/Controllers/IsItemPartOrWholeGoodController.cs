@@ -25,12 +25,20 @@ namespace DataAPI.Controllers
                 {
                     IEnumerable<IsItemPartOrWholeResult> itemInfo = db.IsItemPartOrWholeAsync(SKU, CustID).Result.ToList();
 
-                    return itemInfo;
+                    if (itemInfo.Count() == 0)
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return itemInfo;
+                    }
+                    else
+                    {
+                        return itemInfo;
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return (IEnumerable<IsItemPartOrWholeResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                throw ex; //Error Controller will return error status code            
             }
         }
 

@@ -82,12 +82,12 @@ namespace SymmonsAPI.Controllers
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
               claims: claims,
-              expires: DateTime.Now.AddHours(4),
+              expires: DateTime.Now.AddMonths(7),
               signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
+        //expires: DateTime.Now.AddHours(4).AddMonths(7),
         private UserModel Authenticate(LoginModel login)
         {
             UserModel user = null;

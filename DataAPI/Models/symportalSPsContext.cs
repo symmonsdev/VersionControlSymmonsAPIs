@@ -81,11 +81,12 @@ namespace DataAPI.Models
 
                 //Output Data
                 lst = await this.OrderDetail.FromSqlRaw(sqlQuery, p_ordnbr, p_ordstatus).ToListAsync();
-            }
+ 
+        }
             catch (Exception ex)
             {
                 throw ex;
-                //return (IEnumerable<OrderDetailResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                //return null;
             }
 
             //Return

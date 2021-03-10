@@ -26,12 +26,20 @@ namespace DataAPI.Controllers
                 {
                     IEnumerable<Open_Orders__ByShipToResult> openOrds = db.Open_Orders__ByPO_BillToAsync(PONbr, fromDate, user, billToID).Result.ToList();
 
-                    return openOrds;
+                    if (openOrds.Count() == 0)
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return openOrds;
+                    }
+                    else
+                    {
+                        return openOrds;
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return (IEnumerable<Open_Orders__ByShipToResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                throw ex; //Error Controller will return error status code            
             }
         }
 

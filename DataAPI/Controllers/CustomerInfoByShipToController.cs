@@ -25,14 +25,22 @@ namespace DataAPI.Controllers
                 {
                     IEnumerable<Customer_InfoResult> custInfo = db.GetCustomerInfo_ByShipToAsync(ShipToID).Result.ToList();
 
-                    return custInfo;
+                    if (custInfo.Count() == 0)
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return custInfo;
+                    }
+                    else
+                    {
+                        return custInfo;
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return (IEnumerable<Customer_InfoResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                throw ex; //Error Controller will return error status code            
             }
-        }
 
+        }
     }
 }

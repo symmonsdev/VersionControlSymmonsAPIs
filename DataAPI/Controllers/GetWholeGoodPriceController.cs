@@ -25,12 +25,20 @@ namespace DataAPI.Controllers
                 {
                     IEnumerable<NetPriceResult> wholeGoodPriceInfo = db.Get_WholeGoods_PriceAsync(SKU, PriceGrp, CustID, IsNet).Result.ToList();
 
-                    return wholeGoodPriceInfo;
+                    if (wholeGoodPriceInfo.Count() == 0)
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return wholeGoodPriceInfo;
+                    }
+                    else
+                    {
+                        return wholeGoodPriceInfo;
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return (IEnumerable<NetPriceResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                throw ex; //Error Controller will return error status code            
             }
         }
     }

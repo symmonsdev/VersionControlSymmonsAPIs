@@ -23,15 +23,22 @@ namespace DataAPI.Controllers
             {
                 using (symportalSPsContext db = new symportalSPsContext())
                 {
-                    IEnumerable<OrderSummaryResult> custInfo = db.GetOrderSummary_ShipToAsync(ShipToID, OrdStatus, OrdType, StartDate, EndDate).Result.ToList();
+                    IEnumerable<OrderSummaryResult> ordInfo = db.GetOrderSummary_ShipToAsync(ShipToID, OrdStatus, OrdType, StartDate, EndDate).Result.ToList();
 
-                    return custInfo;
+                    if (ordInfo.Count() == 0)
+                    {
+                        Response.StatusCode = 404; //Not Found
+                        return ordInfo;
+                    }
+                    else
+                    {
+                        return ordInfo;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                
-                return (IEnumerable<OrderSummaryResult>)StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database.");
+                throw ex; //Error Controller will return error status code            
             }
         }
     }
