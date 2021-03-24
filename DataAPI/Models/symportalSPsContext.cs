@@ -725,12 +725,17 @@ namespace DataAPI.Models
         public class Customer_InfoResult
         {
             public Decimal? BillTo_Acct { get; set; }
+            public string BillTo_Name { get; set; }
+            public string BillTo_Address { get; set; }
+            public string BillTo_City { get; set; }
+            public string BillTo_State { get; set; }
+            public string BillTo_Zip_Code { get; set; }
             public Decimal? ShipTo_Acct { get; set; }
-            public string Customer_Name { get; set; }
-            public string Address { get; set; }
-            public string City { get; set; }
-            public string State { get; set; }
-            public string Zip_Code { get; set; }
+            public string ShipTo_Name { get; set; }
+            public string ShipTo_Address { get; set; }
+            public string ShipTo_City { get; set; }
+            public string ShipTo_State { get; set; }
+            public string ShipTo_Zip_Code { get; set; }
 
         }
 
