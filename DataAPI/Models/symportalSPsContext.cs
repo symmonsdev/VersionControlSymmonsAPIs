@@ -31,6 +31,7 @@ namespace DataAPI.Models
         private DbSet<GetPriceGroupResult> GetPriceGroup { get; set; }
         private DbSet<NetPriceResult> NetPrice { get; set; }
         private DbSet<OrderSummaryResult> OrderSummary { get; set; }
+        private DbSet<OrderSummaryWithDetailResult> Order { get; set; }
         private DbSet<OrderDetailResult> OrderDetail { get; set; }
         private DbSet<Address_Book__GetAddressWithEmailResult> Address_Book__GetAddressWithEmail { get; set; }
         private DbSet<Address_Book__GetComboRepsResult> Address_Book__GetComboReps { get; set; }
@@ -50,12 +51,62 @@ namespace DataAPI.Models
             modelBuilder.Query<GetPriceGroupResult>().HasNoKey();
             modelBuilder.Query<NetPriceResult>().HasNoKey();
             modelBuilder.Query<OrderSummaryResult>().HasNoKey();
+            modelBuilder.Query<OrderSummaryWithDetailResult>().HasNoKey();
             modelBuilder.Query<OrderDetailResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetAddressWithEmailResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetComboRepsResult>().HasNoKey();
             modelBuilder.Query<Address_Book__GetNameResult>().HasNoKey();
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public async Task<List<OrderSummaryWithDetailResult>> GetOrder_BillToAsync(Decimal custnbr, string ordStatus, string ordType, DateTime? startDate, DateTime? endDate)
+        {
+            //Initialize Result 
+            List<OrderSummaryWithDetailResult> lst = new List<OrderSummaryWithDetailResult>();
+            try
+            {
+
+                // Parameters  @OrdStatus, @OrdType, @StartDate, @EndDate
+                SqlParameter p_custnbr = new SqlParameter("@BillTo", (object)custnbr ?? DBNull.Value);
+                p_custnbr.Direction = ParameterDirection.Input;
+                p_custnbr.DbType = DbType.Decimal;
+                p_custnbr.Size = 10;
+
+                SqlParameter p_ordstatus = new SqlParameter("@OrdStatus", ordStatus ?? (object)DBNull.Value);
+                p_ordstatus.Direction = ParameterDirection.Input;
+                p_ordstatus.DbType = DbType.String;
+                p_ordstatus.Size = 10;
+
+                SqlParameter p_ordType = new SqlParameter("@OrdType", ordType ?? (object)DBNull.Value);
+                p_ordType.Direction = ParameterDirection.Input;
+                p_ordType.DbType = DbType.String;
+                p_ordType.Size = 3;
+
+
+                SqlParameter p_startDate = new SqlParameter("@StartDate", startDate ?? (object)DBNull.Value);
+                p_startDate.Direction = ParameterDirection.Input;
+                p_startDate.DbType = DbType.DateTime;
+                p_startDate.Size = 25;
+
+                SqlParameter p_endDate = new SqlParameter("@EndDate", endDate ?? (object)DBNull.Value);
+                p_endDate.Direction = ParameterDirection.Input;
+                p_endDate.DbType = DbType.DateTime;
+                p_endDate.Size = 25;
+
+                // Processing 
+                string sqlQuery = $@"EXEC [dbo].[OrderSummary_ByBillTo_CP] @BillTo, @OrdStatus, @OrdType, @StartDate, @EndDate";
+
+                //Output Data
+                lst = await this.Order.FromSqlRaw(sqlQuery, p_custnbr, p_ordstatus, p_ordType, p_startDate, p_endDate).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //Return
+            return lst;
         }
 
         public async Task<List<OrderDetailResult>> GetOrderDetail_OrdNbrAsync(Decimal ordnbr, string ordStatus)
@@ -769,8 +820,21 @@ namespace DataAPI.Models
             public string Order_Status { get; set; }
             public string PO_Number { get; set; }
             public Decimal? Total_Extended_Price { get; set; }
-            public Decimal? Wholesaler_ID { get; set; }
-            public string Wholesaler { get; set; }
+            public Decimal? ShipTo_ID { get; set; }
+            public string ShipTo_Name { get; set; }
+        }
+
+        public class OrderSummaryWithDetailResult
+        {
+            public Decimal? Order_Number { get; set; }
+            public DateTime? Order_Date { get; set; }
+            public string Order_Type { get; set; }
+            public string Order_Status { get; set; }
+            public string PO_Number { get; set; }
+            public Decimal? Total_Extended_Price { get; set; }
+            public Decimal? ShipTo_ID { get; set; }
+            public string ShipTo_Name { get; set; }
+            public IEnumerable<OrderDetailResult> Line_Items { get; set; }
         }
 
         public class OrderDetailResult
